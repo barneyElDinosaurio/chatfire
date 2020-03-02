@@ -17,11 +17,13 @@ import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -71,6 +73,10 @@ public class ActivityChat extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //flag secure
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+                WindowManager.LayoutParams.FLAG_SECURE);
+
         setContentView(R.layout.activity_chat);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarChatActivity);
         setSupportActionBar(toolbar);
@@ -93,6 +99,10 @@ public class ActivityChat extends AppCompatActivity {
                         reference1.child(dataSnapshot.getKey()).removeValue();
                         // save message on local db
                         db.saveMessageOnLocakDB(senderEmail, user.Email, mess, sentDate);
+
+                        //Lindo pal swipe
+                        if(mess.contains("papito")) Log.d("SIZA","lalo");
+
                         if (senderEmail.equals(user.Email)) {
                             // login user
                             appendMessage(mess, sentDate, 1, false);
@@ -317,6 +327,7 @@ public class ActivityChat extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         reference1.removeEventListener(reference1Listener);
+        finish();
     }
 
     @Override
@@ -332,6 +343,7 @@ public class ActivityChat extends AppCompatActivity {
         StaticInfo.UserCurrentChatFriendEmail = "";
         reference1.removeEventListener(reference1Listener);
         reference2.child(StaticInfo.TypingStatus).setValue("");
+        finish();
     }
 
     @Override

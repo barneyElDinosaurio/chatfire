@@ -71,6 +71,7 @@ public class ActivityMain extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        finish();
 
     }
 
@@ -78,7 +79,7 @@ public class ActivityMain extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-
+        finish();
     }
 
     @Override

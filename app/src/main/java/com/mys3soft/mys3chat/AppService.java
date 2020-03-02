@@ -48,6 +48,7 @@ public class AppService extends Service {
                             String senderFullName="google advice";// = Tools.toProperName(map.get("FirstName").toString()) + " " + Tools.toProperName(
                                     map.get("LastName").toString();
                             int notificationType = 1; // Message
+
                             notificationType = map.get("NotificationType") == null ? 1 : Integer.parseInt(map.get("NotificationType").toString());
                             // check if user is on chat activity with senderEmail
                             if (!StaticInfo.UserCurrentChatFriendEmail.equals(senderEmail)) {

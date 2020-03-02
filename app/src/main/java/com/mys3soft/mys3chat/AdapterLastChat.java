@@ -3,11 +3,13 @@ package com.mys3soft.mys3chat;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mys3soft.mys3chat.Models.Message;
 import com.mys3soft.mys3chat.Models.User;
@@ -41,6 +43,8 @@ public class AdapterLastChat extends ArrayAdapter<Message> {
         if (message.Message.length() > 20){
             message.Message = message.Message.substring(0,20);
         }
+
+
         tv_Message.setText(message.Message);
         return customView;
     }
